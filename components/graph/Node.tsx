@@ -1,5 +1,5 @@
 
-import React, { ReactNode, useRef, useLayoutEffect, useEffect } from 'react';
+import React, { ReactNode, useRef, useEffect } from 'react';
 import { Node, NodeType } from '../../types';
 
 interface Props {
@@ -29,18 +29,27 @@ export default function NodeWrapper({
 
   // Use ResizeObserver to measure node size and avoid infinite loops
   useEffect(() => {
+    const el = nodeRef.current;
+    if (!el || !onResize) return;
+
     const observer = new ResizeObserver(entries => {
-      for (let entry of entries) {
-        const { width, height } = entry.contentRect;
-        if (onResize) {
-          onResize(node.id, width, height);
+      const entry = entries[0];
+      if (entry) {
+        // Use borderBoxSize for accurate dimensions including padding and borders.
+        // This is the key fix for the line detachment issue.
+        const borderBox = entry.borderBoxSize?.[0];
+        if (borderBox) {
+            const { inlineSize: width, blockSize: height } = borderBox;
+            onResize(node.id, width, height);
+        } else {
+            // Fallback for older browsers just in case, using the element's bounding rectangle.
+            const rect = el.getBoundingClientRect();
+            onResize(node.id, rect.width, rect.height);
         }
       }
     });
 
-    if (nodeRef.current) {
-      observer.observe(nodeRef.current);
-    }
+    observer.observe(el);
 
     return () => {
       observer.disconnect();

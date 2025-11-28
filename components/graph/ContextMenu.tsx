@@ -46,12 +46,6 @@ const Icons = {
       <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
     </svg>
   ),
-  preview: (
-    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  ),
 };
 
 export default function ContextMenu({ x, y, onSelect, onClose, lang }: Props) {
@@ -61,7 +55,6 @@ export default function ContextMenu({ x, y, onSelect, onClose, lang }: Props) {
     { type: 'prompt', label: t(lang, 'nodes.prompt'), icon: Icons.prompt },
     { type: 'style', label: t(lang, 'nodes.style'), icon: Icons.style },
     { type: 'generator', label: t(lang, 'nodes.generator'), icon: Icons.generator },
-    { type: 'preview', label: t(lang, 'nodes.preview'), icon: Icons.preview },
   ];
 
   return (

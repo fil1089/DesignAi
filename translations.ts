@@ -1,15 +1,16 @@
-
 import { Language } from './types';
 
 export const translations = {
   en: {
     addNode: "Add Node",
+    history: "Generation History",
+    historyPlaceholder: "Generated images will appear here.",
     nodes: {
       reference: "Style Reference",
       asset: "Asset / Object",
       prompt: "Brief / Text",
       style: "Settings",
-      generator: "Generator",
+      generator: "Model",
       preview: "Result",
     },
     actions: {
@@ -39,12 +40,14 @@ export const translations = {
   },
   ru: {
     addNode: "Добавить ноду",
+    history: "История генераций",
+    historyPlaceholder: "Сгенерированные изображения появятся здесь.",
     nodes: {
       reference: "Референс стиля",
       asset: "Объект / Товар",
       prompt: "ТЗ / Текст",
       style: "Настройки",
-      generator: "Генератор",
+      generator: "Модель",
       preview: "Результат",
     },
     actions: {

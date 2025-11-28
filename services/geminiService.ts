@@ -1,6 +1,6 @@
 
 import { GoogleGenAI, Type } from '@google/genai';
-import { NodeData, StyleAnalysis, UploadedImage } from '../types';
+import { NodeData, StyleAnalysis, UploadedImage, GeminiModel } from '../types';
 
 class GeminiService {
   private getClient() {
@@ -66,7 +66,8 @@ class GeminiService {
     data: NodeData, // Combined data from prompt/style nodes
     referenceImage: UploadedImage | null,
     assetImages: UploadedImage[],
-    styleAnalysis: StyleAnalysis | null
+    styleAnalysis: StyleAnalysis | null,
+    modelName: GeminiModel = 'gemini-3-pro-image-preview'
   ) {
     const ai = this.getClient();
     
@@ -122,7 +123,7 @@ class GeminiService {
 
     try {
       const response = await ai.models.generateContent({
-        model: 'gemini-3-pro-image-preview',
+        model: modelName,
         contents: { parts },
         config: {
           imageConfig: {

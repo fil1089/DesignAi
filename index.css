@@ -53,11 +53,11 @@ body {
 }
 
 .node-port-left {
-  left: -7px;
+  left: -9px;
 }
 
 .node-port-right {
-  right: -7px;
+  right: -9px;
 }
 
 /* Plus icon on hover for ports */
@@ -72,4 +72,18 @@ body {
   color: #1a1a25;
   line-height: 1;
   pointer-events: none;
+}
+
+/* Connection Flow Animation */
+@keyframes connection-flow-animation {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.connection-flow {
+  animation: connection-flow-animation 1s linear infinite;
 }

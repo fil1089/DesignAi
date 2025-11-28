@@ -43,6 +43,8 @@ export interface Position {
 }
 
 export type NodeType = 'reference' | 'asset' | 'prompt' | 'style' | 'generator' | 'preview';
+export type GeminiModel = 'gemini-2.5-flash-image' | 'gemini-3-pro-image-preview';
+
 
 export interface NodeData {
   title: string;
@@ -57,6 +59,7 @@ export interface NodeData {
   colorPreference?: string;
   result?: GenerationResult | null;
   error?: string | null;
+  selectedModel?: GeminiModel;
   [key: string]: any;
 }
 
