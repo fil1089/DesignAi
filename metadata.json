@@ -1,0 +1,5 @@
+{
+  "name": "DesignGen AI",
+  "description": "Generate professional designs from reference images using Gemini 3 Pro Image. Upload a reference, define your requirements, and let AI create the perfect banner or social post.",
+  "requestFramePermissions": []
+}

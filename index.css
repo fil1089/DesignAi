@@ -1,0 +1,75 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Montserrat', sans-serif;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: #0a0a0f;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #12121a; 
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a3a; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7b61ff; 
+}
+
+/* Node Port Styles */
+.node-port {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #1a1a25;
+  background-color: #6b7280; /* gray-500 */
+  transition: all 0.2s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: crosshair;
+  z-index: 50;
+}
+
+.node-port:hover {
+  background-color: #00f5d4; /* accent-primary */
+  transform: translateY(-50%) scale(1.2);
+  box-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+}
+
+.node-port-left {
+  left: -7px;
+}
+
+.node-port-right {
+  right: -7px;
+}
+
+/* Plus icon on hover for ports */
+.node-port:hover::after {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  font-weight: bold;
+  color: #1a1a25;
+  line-height: 1;
+  pointer-events: none;
+}

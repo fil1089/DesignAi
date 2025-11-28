@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DesignGen AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ['Unbounded', 'sans-serif'],
+              body: ['Montserrat', 'sans-serif'],
+            },
+            colors: {
+              background: '#0a0a0f',
+              surface: '#12121a',
+              card: '#1a1a25',
+              accent: {
+                primary: '#00f5d4',
+                secondary: '#7b61ff',
+                tertiary: '#ff6b6b',
+              }
+            },
+            animation: {
+              'gradient-x': 'gradient-x 3s ease infinite',
+              'spin-slow': 'spin 3s linear infinite',
+              'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              'gradient-x': {
+                '0%, 100%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'left center'
+                },
+                '50%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'right center'
+                },
+              },
+              'pulse-glow': {
+                '0%, 100%': { opacity: '1', filter: 'brightness(1)' },
+                '50%': { opacity: '.8', filter: 'brightness(1.2)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #0a0a0f;
+        color: #ffffff;
+        overflow: hidden; /* Prevent scrolling for infinite canvas */
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+      }
+      /* Custom scrollbar for webkit */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #12121a; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #2a2a3a; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #7b61ff; 
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "@google/generative-ai": "https://aistudiocdn.com/@google/generative-ai@^0.24.1"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
