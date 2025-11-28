@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Node, UploadedImage, Language } from '../../types';
 import { t } from '../../translations';
 
@@ -11,6 +11,7 @@ interface Props {
 
 export default function ReferenceNode({ node, onChange, lang }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const image = node.data.image;
 
   const processFile = (file: File) => {
@@ -31,8 +32,41 @@ export default function ReferenceNode({ node, onChange, lang }: Props) {
     reader.readAsDataURL(file);
   };
 
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    if (e.dataTransfer.files?.[0]) {
+      processFile(e.dataTransfer.files[0]);
+    }
+  };
+  
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+  
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+
   return (
-    <div className="flex flex-col gap-2">
+    <div 
+      className="flex flex-col gap-2 relative"
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+    >
+      {isDragging && (
+        <div className="absolute inset-0 bg-accent-primary/20 border-2 border-dashed border-accent-primary rounded-lg z-10 flex items-center justify-center pointer-events-none">
+          <p className="font-bold text-accent-primary">{t(lang, 'actions.drop')}</p>
+        </div>
+      )}
+
       <input 
         type="file" 
         ref={inputRef} 
@@ -42,7 +76,7 @@ export default function ReferenceNode({ node, onChange, lang }: Props) {
       />
       
       {image ? (
-        <div className="relative group">
+        <div className="relative group cursor-pointer" onClick={() => inputRef.current?.click()}>
           <img 
             src={image.preview} 
             alt="Reference" 
